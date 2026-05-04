@@ -1,0 +1,223 @@
+name: "Corruption Dungeon Tracker"
+tagline: "Real-time stat, device, and status HUD for the Corruption Dungeon"
+visibility: 'PUBLIC'
+position: 'ADJACENT'
+tags:
+  - 'Stage'
+  - 'Dungeon'
+  - 'Corruption'
+  - 'Stats'
+  - 'HUD'
+  - 'BDSM'
+  - 'NSFW'
+config_schema:
+  type: object
+  properties:
+    show_device_panel:
+      type: boolean
+      default: true
+      description: "Show the attached devices panel"
+    show_trigger_panel:
+      type: boolean
+      default: true
+      description: "Show active triggers and suggestions panel"
+    show_fluid_panel:
+      type: boolean
+      default: true
+      description: "Show fluid status panel"
+    auto_parse_stats:
+      type: boolean
+      default: true
+      description: "Automatically parse stat markers from AI responses"
+    stat_marker_format:
+      type: string
+      default: "bracket"
+      enum:
+        - "bracket"
+        - "json"
+        - "disabled"
+      description: "Format of stat markers to parse: [LUST: 45%] or JSON block"
+state_schema:
+  init:
+    type: object
+    properties:
+      initialized:
+        type: boolean
+        default: false
+      starting_corruption:
+        type: integer
+        default: 0
+        minimum: 0
+        maximum: 100
+      starting_lust:
+        type: integer
+        default: 0
+        minimum: 0
+        maximum: 100
+  chat:
+    type: object
+    properties:
+      total_rooms_cleared:
+        type: integer
+        default: 0
+      total_devices_applied:
+        type: integer
+        default: 0
+      total_orgasms:
+        type: integer
+        default: 0
+      total_ruins:
+        type: integer
+        default: 0
+      total_fluid_deposits:
+        type: integer
+        default: 0
+  message:
+    type: object
+    properties:
+      lust:
+        type: integer
+        default: 0
+        minimum: 0
+        maximum: 100
+      corruption:
+        type: integer
+        default: 0
+        minimum: 0
+        maximum: 100
+      trance:
+        type: string
+        default: "None"
+        enum:
+          - "None"
+          - "Light"
+          - "Medium"
+          - "Deep"
+          - "Profound"
+      mental_state:
+        type: string
+        default: "Calm"
+        enum:
+          - "Calm"
+          - "Anxious"
+          - "Aroused"
+          - "Desperate"
+          - "Critical"
+          - "Submitting"
+          - "Broken"
+      susceptibility:
+        type: string
+        default: "Resistant"
+        enum:
+          - "Resistant"
+          - "Neutral"
+          - "Receptive"
+          - "Highly Suggestible"
+          - "Mindless"
+      arousal:
+        type: string
+        default: "None"
+        enum:
+          - "None"
+          - "Minimal"
+          - "Noticeable"
+          - "Soaking"
+          - "Throbbing"
+      edge_count:
+        type: integer
+        default: 0
+      ruin_risk:
+        type: string
+        default: "Low"
+        enum:
+          - "Low"
+          - "Medium"
+          - "High"
+      room_tier:
+        type: integer
+        default: 1
+        minimum: 1
+        maximum: 5
+      room_type:
+        type: string
+        default: "Entrance"
+        enum:
+          - "Entrance"
+          - "Task"
+          - "Device"
+          - "Submission"
+          - "Rest"
+          - "Milestone"
+          - "Trap Corridor"
+      corruption_stage:
+        type: string
+        default: "I - Intact"
+        enum:
+          - "I - Intact"
+          - "II - Curious"
+          - "III - Compromised"
+          - "IV - Craving"
+          - "V - Transformed"
+      devices:
+        type: array
+        items:
+          type: object
+          properties:
+            slot:
+              type: string
+            device:
+              type: string
+            effect:
+              type: string
+        default: []
+      triggers:
+        type: array
+        items:
+          type: string
+        default: []
+      suggestions:
+        type: array
+        items:
+          type: object
+          properties:
+            text:
+              type: string
+            strength:
+              type: string
+        default: []
+      fluids:
+        type: object
+        properties:
+          cum_external:
+            type: boolean
+            default: false
+          cum_internal:
+            type: boolean
+            default: false
+          cum_swallowed:
+            type: boolean
+            default: false
+          milk:
+            type: string
+            default: "None"
+            enum:
+              - "None"
+              - "Leaking"
+              - "Flowing"
+              - "Spraying"
+          lubrication:
+            type: boolean
+            default: false
+        default: {}
+      last_action:
+        type: string
+        default: "Entered dungeon"
+      thought_surface:
+        type: string
+        default: ""
+      thought_hidden:
+        type: string
+        default: ""
+      thought_intrusive:
+        type: string
+        default: ""
